@@ -11,8 +11,14 @@ soup = bs(page.content, 'html.parser')
 ## print(soup.prettify())
 a = soup.find_all('div', {'class':'value_txtfl'})
 b = soup.find_all('div', {'class':'value_txtfl'})
-for row in a:
-    print(row.string)
+tag=[]
+vl=[]
+c=0
+for i in a:
+    tag[c] =a[c].string
+    vl[c] = b[c].string
+    c+=1
+    print(tag)
 print('#########################################################################################################')
 print(a)
 
