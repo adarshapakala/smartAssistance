@@ -9,17 +9,21 @@ page = requests.get(url, headers=headers)
 
 soup = bs(page.content, 'html.parser')
 ## print(soup.prettify())
-a = soup.find_all('div', {'class':'value_txtfl'})
-b = soup.find_all('div', {'class':'value_txtfl'})
-tag=[]
-vl=[]
-c=0
-for i in a:
-    tag[c] =a[c].string
-    vl[c] = b[c].string
-    c+=1
-    print(tag)
-print('#########################################################################################################')
-print(a)
+
+
+for b in soup.find_all(id ="standalone_valuation"):
+
+    for a in soup.find_all('div',class_='value_txtfl'):
+        print('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
+        print(a.text)
+        c = soup.find('div',class_='value_txtfr')
+        print(c.text)
+
+# row=[i.text for i in soup.find_all('div', class_='value_txtfr')]
+# print(row)
+
+
+
+
 
 
