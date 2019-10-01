@@ -8,19 +8,13 @@ headers ={"User-Agent":'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/53
 page = requests.get(url, headers=headers)
 
 soup = bs(page.content, 'html.parser')
-## print(soup.prettify())
+for b in soup.find_all(id ="standalone_valuation"):  ##Get into main group
 
-
-for b in soup.find_all(id ="standalone_valuation"):
-
-    for a in soup.find_all('div',class_='value_txtfl'):
-        print('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
+    for a in soup.find_all('div',class_='value_txtfl'): ##Locate the item
         print(a.text)
         c = soup.find('div',class_='value_txtfr')
         print(c.text)
 
-# row=[i.text for i in soup.find_all('div', class_='value_txtfr')]
-# print(row)
 
 
 
