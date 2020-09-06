@@ -1,23 +1,23 @@
 from bs4 import BeautifulSoup as bs
 import requests
-
-
-url ="https://www.screener.in/company/TATAMOTORS/consolidated/"
+ticker ='INFY'
+stockParam ={"MarketCap":0, "BookVal":0, "PEratio":0, "Div_Yield":0,"ROCE":0, "ROE":0,"PriceToBook":0, "PEG":0, "DebtToEquity":0}
 headers ={"User-Agent":'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'}
-
-page = requests.get(url, headers=headers)
-
-
+stockURL ="https://www.screener.in/company/"+ ticker+"/consolidated/"
+page = requests.get(stockURL, headers=headers)
 soup = bs(page.content, 'html.parser')
-sName = soup.find(class_="no-margin").get_text()
-print(sName)
-for b in soup.find_all(id ="standalone_valuation"):  ##Get into main group
+line = [] ## Declare a list to hold all the lines of the scrapped data
 
-    for a in soup.find_all('div',class_='value_txtfl'): ##Locate the item
-        print(a.text)
-        c = soup.find('div',class_='value_txtfr')
-        print(c.text)
-        print('hello')
+for params in soup.find_all(class_='four columns'): ##get first set of the parameters listed in the page(Screener.in lists parametrs in 2 sets)
+    paramsText = params.get_text()
+    paramLines = paramsText.split("\n")
+    for i in paramLines:
+        # if i.strip() != "":
+        line.append(i.strip())
+
+print(line)
+
+
 
 
 
